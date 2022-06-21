@@ -1,0 +1,20 @@
+--- a/src/main.cxx	  2022-03-17 22:06:06.000000000 -0400
++++ b/src/main.cxx	  2022-06-21 09:33:52.817017651 -0400
+@@ -1983,6 +1983,17 @@
+ #else
+ 	   FL_NORMAL_SIZE = 12;
+ #endif
++
++float dpx, dpy;
++    Fl::screen_dpi ( dpx, dpy );
++
++std::cout << "current screen scale factor: " << Fl::screen_scale(0) << std::endl;
++
++float scrn_scale = dpx / 90.0;
++
++std::cout << "new screen scale factor: " << scrn_scale << std::endl;
++    Fl::screen_scale(0, scrn_scale);
++
+ }
+ 
+ // Convert 1 second of 1-channel silence from IN_RATE Hz to OUT_RATE Hz,
