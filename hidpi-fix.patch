@@ -10,7 +10,7 @@
 +
 +std::cout << "current screen scale factor: " << Fl::screen_scale(0) << std::endl;
 +
-+float scrn_scale = dpx / 90.0;
++float scrn_scale = dpx / 45.0;
 +
 +std::cout << "new screen scale factor: " << scrn_scale << std::endl;
 +    Fl::screen_scale(0, scrn_scale);

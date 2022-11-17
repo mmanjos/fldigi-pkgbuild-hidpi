@@ -14,15 +14,15 @@ depends=('cty' 'fltk-git' 'libsamplerate' 'flxmlrpc>=1.0.1'
          'portaudio' 'libpulse' 'hamlib' 'hamradio-menus')
 optdepends=('libsndfile: sound file support'
             'pulseaudio: pulseaudio support')
-source=(http://w1hkj.com/files/$pkgname/$pkgname-$pkgver.tar.gz)
+source=(https://github.com/w1hkj/fldigi/archive/master.zip)
 
 prepare() {
-  patch --directory="$pkgname-$pkgver" --forward --strip=1 --input="${srcdir}/../hidpi-fix.patch"
+  patch --directory="$pkgname-master" --forward --strip=1 --input="${srcdir}/../hidpi-fix.patch"
 }
 
 build() {
-	cd "$srcdir"/$pkgname-$pkgver
-
+	cd "$srcdir"/$pkgname-master
+	autoreconf -fi
 	./configure --prefix=/usr \
 		--enable-tls --with-flxmlrpc --without-asciidoc
 #		--enable-tls --without-flxmlrpc --without-asciidoc
@@ -31,13 +31,13 @@ build() {
 }
 
 check() {
-	cd "$srcdir"/$pkgname-$pkgver
+	cd "$srcdir"/$pkgname-master
 
 	make -k check
 }
 
 package() {
-	cd "$srcdir"/$pkgname-$pkgver
+	cd "$srcdir"/$pkgname-master
 
 	make DESTDIR="$pkgdir" install
 }
